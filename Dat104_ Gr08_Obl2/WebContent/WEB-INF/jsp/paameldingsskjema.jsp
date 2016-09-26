@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,27 +9,30 @@
 </head>
 <body>
 	<h2>Påmelding</h2>
-	<form action="paameldingsbekreftelse.html">
+	<form action="Paamelding" method="post">
 		<fieldset>
 			<legend>Personlige data</legend>
 			<p>
-				Fornavn: <input type="text" name="fornavn" value="Arne" />
+				Fornavn: <input type="text" name="fornavn"
+					value="${deltaker.fornavn}" />
 			</p>
-			<%--Implementer feilmeldinglogikk --%>
-			<!-- <font color="red">Kan ikke være tomt</font> -->
+			${deltaker.fornavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
-				Etternavn: <input type="text" name="etternavn" value="Arnesen" />
+				Etternavn: <input type="text" name="etternavn"
+					value="${deltaker.etternavn}" />
 			</p>
+			${deltaker.etternavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
-				Mobil (8 siffer): <input type="text" name="mobil" value="90123456" />
+				Mobil (8 siffer): <input type="text" name="mobil"
+					value="${deltaker.mobil}" />
 			</p>
-			<%--Implementer feilmeldinglogikk --%>
-			<!-- <font color="red">Kan ikke være tomt</font> -->
+			${deltaker.mobil.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
 				Kjønn: <input type="radio" name="kjonn" value="mann"
-					checked="checked" />mann <input type="radio" name="kjonn"
-					value="kvinne" />kvinne
+					${deltaker.kjonn == "mann" ? "checked='checked'" : " " } />mann <input type="radio" name="kjonn"
+					value="kvinne" ${deltaker.kjonn == "kvinne" ? "checked='checked'" : " " } />kvinne
 			</p>
+			${deltaker.kjonn == null ? "<p><font color='red'>Et kjønn må velges</font></p>" : " " }
 			<p>
 				<input type="submit" value="Meld meg på" />
 			</p>
