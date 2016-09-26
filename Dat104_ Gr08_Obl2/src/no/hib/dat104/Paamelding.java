@@ -33,8 +33,12 @@ public class Paamelding extends HttpServlet {
 		deltaker.setEtternavn(request.getParameter("etternavn"));
 		deltaker.setMobil(request.getParameter("mobil"));
 		deltaker.setKjonn(request.getParameter("kjonn"));
+		if (deltaker.valid()) {
+			//Kode for å lagre deltaker i database
+			response.sendRedirect("Bekreftelse");
+		} else {
 		request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
-		
+		}
 	}
 
 }

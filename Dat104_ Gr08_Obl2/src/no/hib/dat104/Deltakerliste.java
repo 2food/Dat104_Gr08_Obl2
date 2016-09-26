@@ -10,17 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Deltakere
  */
-@WebServlet("/Deltakere")
-public class Deltakere extends HttpServlet {
+@WebServlet("/Deltakerliste")
+public class Deltakerliste extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Deltakere() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

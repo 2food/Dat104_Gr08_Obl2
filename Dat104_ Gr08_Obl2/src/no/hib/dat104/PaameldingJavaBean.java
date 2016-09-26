@@ -20,6 +20,23 @@ public class PaameldingJavaBean implements Serializable{
 		this.mobil = mobil;
 		this.kjonn = kjonn;
 	}
+	
+	public boolean valid() {
+		boolean valid = true;
+		if (fornavn == null || fornavn.trim() == "") {
+			valid = false;
+		}
+		if (etternavn == null || etternavn.trim() == "") {
+			valid = false;
+		}
+		if (mobil== null || mobil.trim() == "") {
+			valid = false;
+		}
+		if (kjonn == null || kjonn.trim() == "") {
+			valid = false;
+		}
+		return valid;
+	}
 
 	public String getFornavn() {
 		return fornavn;
