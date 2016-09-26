@@ -10,12 +10,13 @@
 	<h2>Logg inn</h2>
 	<p>Det er kun registrerte deltagere som får se deltagerlisten. Logg
 		inn ved å gi mobil-nummeret ditt.</p>
-	<form action="deltagerliste.html">
+	<form action="Innlogging" method="post">
 		<fieldset>
 			<legend>Logg inn</legend>
 			<p>
-				Mobil: <input type="password" name="mobil" value="90123456" />
+				Mobil: <input type="password" name="mobil"/>
 			</p>
+			${!validmobil ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<%-- Implementer feilmeldinglogikk --%>
 			<!-- <font color="red">Må tilhøre registrert deltager</font> -->
 			<p>
