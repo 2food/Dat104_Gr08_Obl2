@@ -2,6 +2,7 @@ package no.hib.dat104.model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -46,8 +47,12 @@ public class DeltagerEAOtest extends HttpServlet {
 		
 		
 		deao.slettDeltager(d0.getMobil());
-		
-		
+
+		out.println("liste:<br>");
+		List<Deltager> l = deao.alleDeltagere();
+		for (Deltager d : l) {
+			out.println(d.getEnavn() + ", " + d.getFnavn() + "<br>");			
+		}
 
 	}
 

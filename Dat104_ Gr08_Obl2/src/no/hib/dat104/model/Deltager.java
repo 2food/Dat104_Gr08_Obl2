@@ -85,7 +85,7 @@ public class Deltager implements Comparable<Deltager> {
 	
 	@Override
 	public int compareTo(Deltager d1) {
-		return enavn.compareTo(d1.getEnavn());
+		return enavn.compareToIgnoreCase(d1.getEnavn());
 	}
 
 }
