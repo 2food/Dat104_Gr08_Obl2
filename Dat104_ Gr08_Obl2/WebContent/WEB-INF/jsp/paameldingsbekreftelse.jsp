@@ -10,12 +10,12 @@
 	<h2>Påmeldingsbekreftelse</h2>
 	<p>Påmeldingen er mottatt for</p>
 	<p>
-		&nbsp;&nbsp;&nbsp;${deltaker.fornavn}<br /> &nbsp;&nbsp;&nbsp;${deltaker.etternavn}<br />
-		&nbsp;&nbsp;&nbsp;${deltaker.mobil}<br /> &nbsp;&nbsp;&nbsp;${deltaker.kjonn}
+		&nbsp;&nbsp;&nbsp;${deltager.fornavn}<br /> &nbsp;&nbsp;&nbsp;${deltager.etternavn}<br />
+		&nbsp;&nbsp;&nbsp;${deltager.mobil}<br /> &nbsp;&nbsp;&nbsp;${deltager.kjonn}
 	</p>
 	<p>
 		<b>NB! Husk å betale til kassereren før festen!</b>
 	</p>
-	<a href="Deltakerliste">Gå til deltagerlisten</a>
+	<a href="Deltagerliste">Gå til deltagerlisten</a>
 </body>
 </html>

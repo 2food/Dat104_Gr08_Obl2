@@ -14,11 +14,11 @@
 		<fieldset>
 			<legend>Logg inn</legend>
 			<p>
-				Mobil: <input type="password" name="mobil"/>
+				Mobil: <input type="password" name="mobil" />
 			</p>
-			${!validmobil ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
-			<%-- Implementer feilmeldinglogikk --%>
-			<!-- <font color="red">Må tilhøre registrert deltager</font> -->
+			${!validmobil ? "<p><font color='red'>Må skrive et mobilnummer</font></p>" : " " }
+			${!mobilfinnes ? "<p><font color='red'>Må tilhøre registrert deltager</font></p>" : " " }
+
 			<p>
 				<input type="submit" value="Logg inn" />
 			</p>

@@ -14,25 +14,25 @@
 			<legend>Personlige data</legend>
 			<p>
 				Fornavn: <input type="text" name="fornavn"
-					value="${deltaker.fornavn}" />
+					value="${deltager.fornavn}" />
 			</p>
-			${deltaker.fornavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
+			${deltager.fornavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
 				Etternavn: <input type="text" name="etternavn"
-					value="${deltaker.etternavn}" />
+					value="${deltager.etternavn}" />
 			</p>
-			${deltaker.etternavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
+			${deltager.etternavn.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
 				Mobil (8 siffer): <input type="text" name="mobil"
-					value="${deltaker.mobil}" />
+					value="${deltager.mobil}" />
 			</p>
-			${deltaker.mobil.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
+			${deltager.mobil.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
-				Kjønn: <input type="radio" name="kjonn" value="mann"
-					${deltaker.kjonn == "mann" ? "checked='checked'" : " " } />mann <input type="radio" name="kjonn"
-					value="kvinne" ${deltaker.kjonn == "kvinne" ? "checked='checked'" : " " } />kvinne
+				Kjønn: <input type="radio" name="kjonn" value="M"
+					${deltager.kjonn == "mann" ? "checked='checked'" : " " } />mann <input type="radio" name="kjonn"
+					value="F" ${deltager.kjonn == "kvinne" ? "checked='checked'" : " " } />kvinne
 			</p>
-			${deltaker.kjonn == null ? "<p><font color='red'>Et kjønn må velges</font></p>" : " " }
+			${deltager.kjonn == null ? "<p><font color='red'>Et kjønn må velges</font></p>" : " " }
 			<p>
 				<input type="submit" value="Meld meg på" />
 			</p>
