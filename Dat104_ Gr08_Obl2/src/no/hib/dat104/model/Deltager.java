@@ -45,6 +45,10 @@ public class Deltager {
 	public void setMobil(int mobil) {
 		this.mobil = mobil;
 	}
+	
+	public String getFullnavn() {
+		return fnavn.concat(" ").concat(enavn);
+	}
 
 	public String getFnavn() {
 		return fnavn;
