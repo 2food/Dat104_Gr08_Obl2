@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,10 @@
 <meta charset="ISO-8859-1">
 <title>Betalingsoversikt</title>
 </head>
+<c:set var="betalt" scope="page" value="#aaffaa" />
+<c:set var="ubetalt" scope="page" value="#ffaaaa" />
+<c:set var="mann" scope="page" value="&#9794;" />
+<c:set var="kvinne" scope="page" value="&#9792;" />
 <body>
 	<h2>Betalingsoversikt</h2>
 	<form>
@@ -16,23 +21,17 @@
 				<th>Mobil</th>
 				<th>Betalingsstatus</th>
 			</tr>
-			<tr>
-				<td>Arne And</td>
-				<td>123 45 678</td>
-				<td align="center">Betaling mottatt</td>
-			</tr>
-			<tr>
-				<td>Arne Arnesen</td>
-				<td>901 23 456</td>
-				<td><input type="submit" name="90123456"
-					value="Registrer betaling" /></td>
-			</tr>
-			<tr>
-				<td>Berit Beritsen</td>
-				<td>876 54 321</td>
-				<td><input type="submit" name="87654321"
-					value="Registrer betaling" /></td>
-			</tr>
+
+			<c:forEach var="d" items="${dlist}">
+				<tr bgcolor="${login!=d.mobil ? annen : d.betalingsstatus ? betalt : ubetalt}">
+					<td align="center">${d.fnavn} ${d.enavn}</td>
+					<td>${d.mobil}</td>
+					<td align="center">${d.betalingsstatus ? 'Betaling mottatt' :  '<input type="submit" name="${d.mobil}"
+					value="Registrer betaling" />' }</td>
+				</tr>
+			</c:forEach>
+
+
 		</table>
 	</form>
 	<p>
