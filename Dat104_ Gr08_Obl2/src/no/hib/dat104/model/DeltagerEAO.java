@@ -1,5 +1,7 @@
 package no.hib.dat104.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -50,7 +52,13 @@ public class DeltagerEAO {
 	 */
 	public List<Deltager> alleDeltagere() {
 		TypedQuery<Deltager> query = em.createQuery("SELECT s FROM Deltager s", Deltager.class);
-		return query.getResultList();
+		List<Deltager> q =query.getResultList();
+		List<Deltager> list = new ArrayList<Deltager>();
+		for (Deltager d : q) {
+			list.add(d);
+		}
+		Collections.sort(list);
+		return list;
 	}
 	/**
 	 * Setter betalingsstatus status på deltagereren registrert med nummeret mobil
