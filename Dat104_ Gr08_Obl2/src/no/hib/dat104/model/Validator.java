@@ -10,7 +10,7 @@ public class Validator {
 	 * @param nr
 	 * @return boolean
 	 */
-	public boolean mobilValidate(String nr) {
+	public static boolean mobilValidate(String nr) {
 		boolean valid = true;
 		if (nr == null || nr.length() != 8) {
 			valid = false;
@@ -37,7 +37,7 @@ public class Validator {
 	 * 
 	 * @return boolean
 	 */
-	public boolean loginValidate(String nr, List<Deltager> dlist) {
+	public static boolean loginValidate(String nr, List<Deltager> dlist) {
 		if (nr == null) {
 			return false;
 		} else {

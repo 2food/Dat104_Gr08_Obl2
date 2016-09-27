@@ -44,9 +44,8 @@ public class Paamelding extends HttpServlet {
 		deltager.setEtternavn(request.getParameter("etternavn"));
 		deltager.setMobil(request.getParameter("mobil"));
 		deltager.setKjonn(request.getParameter("kjonn"));
-		Validator v = new Validator();
 		if (deltager.valid()) {
-			if (v.mobilValidate(deltager.getMobil())) {
+			if (Validator.mobilValidate(deltager.getMobil())) {
 				Deltager d = new Deltager(Integer.parseInt(deltager.getMobil()), deltager.getFornavn(), deltager.getEtternavn(), deltager.getKjonn());			
 				try {
 				deao.leggTilDeltager(d);
