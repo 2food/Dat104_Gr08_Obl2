@@ -47,7 +47,7 @@ public class DeltagerEAO {
 		em.persist(d);
 	}
 	/**
-	 * Returnerer en List<Deltager> over alle registrerte deltagere
+	 * Returnerer en List<Deltager> over alle registrerte deltagere, sortert etter etternavn
 	 * @return
 	 */
 	public List<Deltager> alleDeltagere() {
