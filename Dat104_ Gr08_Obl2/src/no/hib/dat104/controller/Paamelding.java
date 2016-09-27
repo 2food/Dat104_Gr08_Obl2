@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import no.hib.dat104.javabeans.PaameldingJavaBean;
 import no.hib.dat104.model.Deltager;
 import no.hib.dat104.model.DeltagerEAO;
 import no.hib.dat104.model.Validator;
