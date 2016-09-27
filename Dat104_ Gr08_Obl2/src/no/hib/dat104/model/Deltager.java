@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(schema = "deltagere", name = "deltager")
-public class Deltager {
+public class Deltager implements Comparable<Deltager> {
 
 	@Id
 	private int mobil;
@@ -80,6 +80,12 @@ public class Deltager {
 
 	public void setBetalingsstatus(boolean betalingsstatus) {
 		this.betalingsstatus = betalingsstatus;
+	}
+
+	
+	@Override
+	public int compareTo(Deltager d1) {
+		return enavn.compareTo(d1.getEnavn());
 	}
 
 }
