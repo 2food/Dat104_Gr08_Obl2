@@ -35,6 +35,7 @@ public class DeltagerEAOtest extends HttpServlet {
 		deao.slettDeltager(d0.getMobil());
 		out.println("d0 eksisterer ikke lengre:" + !deao.deltagerEksisterer(d0) + "<br>");
 		
+		d0 = new Deltager(55550000, "Test", "Testsen", "M");
 		//oppdater betaling
 		deao.leggTilEllerOppdater(d0);
 		out.println("d0 har betalt:" + deao.finnDeltager(d0.getMobil()).isBetalingsstatus() + "<br>");
