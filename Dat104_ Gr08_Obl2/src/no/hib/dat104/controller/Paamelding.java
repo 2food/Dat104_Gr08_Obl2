@@ -3,6 +3,7 @@ package no.hib.dat104.controller;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +31,7 @@ public class Paamelding extends HttpServlet {
 		}
 		HttpSession sesjon = request.getSession();
 		sesjon.setAttribute("deltager", new PaameldingJavaBean());
+		request.setAttribute("finnes", false);
 		request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
 	}
 
@@ -45,9 +47,14 @@ public class Paamelding extends HttpServlet {
 		if (deltager.valid()) {
 			if (v.mobilValidate(deltager.getMobil())) {
 				Deltager d = new Deltager(Integer.parseInt(deltager.getMobil()), deltager.getFornavn(), deltager.getEtternavn(), deltager.getKjonn());			
+				try {
 				deao.leggTilDeltager(d);
+				} catch (EJBTransactionRolledbackException e) {
+					request.setAttribute("finnes", true);
+					request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
+				}
 			}
-			
+			sesjon.setAttribute("login", deltager.getMobil());
 			response.sendRedirect("Bekreftelse");
 		} else {
 		request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
