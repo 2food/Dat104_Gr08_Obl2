@@ -24,7 +24,7 @@
 			
 
 			<c:forEach var="d" items="${dlist}">
-				<tr bgcolor="${login!=d.mobil ? annen : d.betalingsstatus ? betalt : ubetalt}">
+				<tr bgcolor="${d.betalingsstatus ? betalt : ubetalt}">
 					<td align="center">${d.fnavn} ${d.enavn}</td>
 					<td>${d.mobil}</td>
 					<td align="center">${d.betalingsstatus ? 'Betaling mottatt' :  '<input type="submit" name="${d.mobil}"

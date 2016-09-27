@@ -37,7 +37,7 @@ public class Kassererlogin extends HttpServlet {
 		HttpSession sesjon = request.getSession();
 		if (passord != null && passord.equals(initpassord)) {
 			sesjon.setAttribute("login", passord);
-			request.getRequestDispatcher("WEB-INF/jsp/betalingsoversikt.jsp").forward(request, response);
+			response.sendRedirect("Betalingsoversikt");
 		} else {
 			sesjon.setAttribute("riktigpassord", false);
 			request.getRequestDispatcher("WEB-INF/jsp/kassererlogin.jsp").forward(request, response);
