@@ -1,6 +1,7 @@
 package no.hib.dat104.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.EJB;
