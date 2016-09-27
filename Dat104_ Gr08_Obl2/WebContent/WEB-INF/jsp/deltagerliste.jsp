@@ -8,7 +8,8 @@
 <meta charset="ISO-8859-1">
 <title>Deltagerliste</title>
 </head>
-<c:set var="betalt" scope="page" value="#ffffff"/>
+<c:set var="annen" scope="page" value="#ffffff"/>
+<c:set var="betalt" scope="page" value="#aaffaa"/>
 <c:set var="ubetalt" scope="page" value="#ffaaaa"/>
 <c:set var="mann" scope="page" value="&#9794;"/>
 <c:set var="kvinne" scope="page" value="&#9792;"/>
@@ -20,7 +21,7 @@
 			<th align="left">Navn</th>
 		</tr>
 		<c:forEach var="d" items="${dlist}">
-			<tr bgcolor="${d.betalingsstatus ? betalt : ubetalt }">
+			<tr bgcolor="${login!=d.mobil ? annen : d.betalingsstatus ? betalt : ubetalt}">
 			<td align="center">${d.kjonn == "F" ? kvinne : mann }</td><td>${d.fullnavn}</td></tr>
 		</c:forEach> 
 		
