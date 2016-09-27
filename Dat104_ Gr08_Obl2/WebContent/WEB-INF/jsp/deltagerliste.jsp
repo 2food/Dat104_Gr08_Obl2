@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -18,16 +19,16 @@
 			<th>Kjønn</th>
 			<th align="left">Navn</th>
 		</tr>
-		<c:forEach var="d" items="dlist">
-			<tr bgcolor="${d.betalingstatus ? betalt : ubetalt }">
-			<td align="center">${d.kjonn == "K" ? kvinne : mann }</td><td>${d.fullnavn}</td></tr>
+		<c:forEach var="d" items="${dlist}">
+			<tr bgcolor="${d.betalingsstatus ? betalt : ubetalt }">
+			<td align="center">${d.kjonn == "F" ? kvinne : mann }</td><td>${d.fullnavn}</td></tr>
 		</c:forEach> 
 		
 		
 		<!-- <tr bgcolor="#aaffaa"><td align="center">&#9794;</td><td>Arne Arnesen</td></tr> -->
 	</table>
 	<p>
-		<a href="ferdig.html">Ferdig</a>
+		<a href="Logut">Ferdig</a>
 	</p>
 </body>
 </html>
