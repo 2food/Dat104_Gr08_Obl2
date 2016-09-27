@@ -21,6 +21,7 @@
 				<th>Mobil</th>
 				<th>Betalingsstatus</th>
 			</tr>
+			
 
 			<c:forEach var="d" items="${dlist}">
 				<tr bgcolor="${login!=d.mobil ? annen : d.betalingsstatus ? betalt : ubetalt}">
