@@ -9,14 +9,13 @@
 </head>
 <body>
 	<h2>Kasserer login</h2>
-	<form action="betalingsoversikt.html">
+	<form action="Kassererlogin" method="post">
 		<fieldset>
 			<legend>Kasserer login</legend>
 			<p>
-				Passord: <input type="password" name="password" value="allstars" />
+				Passord: <input type="password" name="passord" value="" />
 			</p>
-			<%--Implementer feilmeldinglogikk --%>
-			<!-- <font color="red">Feil passord</font></p> -->
+			${!riktigpassord ? "<p><font color='red'>Feil passord</font></p>" : " " }
 			<p>
 				<input type="submit" value="Logg inn" />
 			</p>

@@ -46,11 +46,10 @@ public class Innlogging extends HttpServlet {
 		sesjon.setAttribute("mobilfinnes", true);
 		
 		List<Deltager> dlist = deao.alleDeltagere();
-		Validator v = new Validator();
-		if (!v.mobilValidate(mobil)) {
+		if (!Validator.mobilValidate(mobil)) {
 			sesjon.setAttribute("validmobil", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
-		} else if (!v.loginValidate(mobil, dlist)) {
+		} else if (!Validator.loginValidate(mobil, dlist)) {
 			sesjon.setAttribute("mobilfinnes", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
 		} else {

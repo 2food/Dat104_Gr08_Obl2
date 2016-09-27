@@ -6,20 +6,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Kassererlogin
  */
-@WebServlet("/Kassererlogin")
+@WebServlet(name = "Kassererlogin", urlPatterns = "/Kassererlogin")
 public class Kassererlogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	String initpassord;
+	
+	@Override
+	public void init() throws ServletException {
+		initpassord = getServletConfig().getInitParameter("passord");
+	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesjontemp = request.getSession(false);
+		if (sesjontemp != null) {
+			sesjontemp.invalidate();
+		}
+		HttpSession sesjon = request.getSession();
+		sesjon.setAttribute("riktigpassord", true);
 		request.getRequestDispatcher("WEB-INF/jsp/kassererlogin.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String passord = request.getParameter("passord");
+		HttpSession sesjon = request.getSession();
+		if (passord != null && passord.equals(initpassord)) {
+			sesjon.setAttribute("login", passord);
+			request.getRequestDispatcher("WEB-INF/jsp/betalingsoversikt.jsp").forward(request, response);
+		} else {
+			sesjon.setAttribute("riktigpassord", false);
+			request.getRequestDispatcher("WEB-INF/jsp/kassererlogin.jsp").forward(request, response);
+		}
 	}
 
 }

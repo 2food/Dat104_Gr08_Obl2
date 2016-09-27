@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h2>Påmelding</h2>
+	${finnes ? "<p><font color='red'>Deltager er allerede påmeldt</font></p>" : " "}
 	<form action="Paamelding" method="post">
 		<fieldset>
 			<legend>Personlige data</legend>
@@ -29,8 +30,8 @@
 			${deltager.mobil.trim() == "" ? "<p><font color='red'>Kan ikke være tomt</font></p>" : " " }
 			<p>
 				Kjønn: <input type="radio" name="kjonn" value="M"
-					${deltager.kjonn == "mann" ? "checked='checked'" : " " } />mann <input type="radio" name="kjonn"
-					value="F" ${deltager.kjonn == "kvinne" ? "checked='checked'" : " " } />kvinne
+					${deltager.kjonn == "M" ? "checked=\"checked\"" : " " } />mann <input type="radio" name="kjonn"
+					value="F" ${deltager.kjonn == "F" ? "checked=\"checked\"" : " " } />kvinne
 			</p>
 			${deltager.kjonn == null ? "<p><font color='red'>Et kjønn må velges</font></p>" : " " }
 			<p>
