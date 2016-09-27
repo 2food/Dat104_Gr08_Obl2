@@ -29,7 +29,7 @@ public class DeltagerEAO {
 	 * @param d
 	 * @return
 	 */
-	private boolean deltagerEksisterer(Deltager d) {
+	public boolean deltagerEksisterer(Deltager d) {
 		boolean eksiterer = false;
 		List<Deltager> dList = alleDeltagere();
 		for (Deltager d2 : dList) {
