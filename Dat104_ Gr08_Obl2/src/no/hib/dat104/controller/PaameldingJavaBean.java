@@ -1,4 +1,4 @@
-package no.hib.dat104;
+package no.hib.dat104.controller;
 
 import java.io.Serializable;
 
