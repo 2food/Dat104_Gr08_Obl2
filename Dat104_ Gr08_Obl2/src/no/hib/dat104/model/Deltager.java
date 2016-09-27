@@ -82,6 +82,7 @@ public class Deltager implements Comparable<Deltager> {
 		this.betalingsstatus = betalingsstatus;
 	}
 
+	
 	@Override
 	public int compareTo(Deltager d1) {
 		return enavn.compareTo(d1.getEnavn());
