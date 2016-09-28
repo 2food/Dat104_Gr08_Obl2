@@ -25,21 +25,33 @@ public class Betalingsoversikt extends HttpServlet {
 	@EJB
 	private DeltagerEAO deao;
 	
+	String initpassord;
+	
+	@Override
+	public void init() throws ServletException {
+		initpassord = getServletConfig().getInitParameter("passord");
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesjon = request.getSession();
 		List<Deltager> dlist = deao.alleDeltagere();
-		Validator v = new Validator();
-		if (true) {//v.loginValidate((String) sesjon.getAttribute("login"), dlist)) {
+		if (true) {//sesjon.getAttribute("login") == initpassord) {
 			request.setAttribute("dlist", dlist);
 			request.getRequestDispatcher("WEB-INF/jsp/betalingsoversikt.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("Innlogging");
+			response.sendRedirect("Kassererlogin");
 		}
 	}
 	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		List<Deltager> dlist = deao.alleDeltagere();
+		for (Deltager d : dlist) {
+			if (request.getParameter(String.valueOf(d.getMobil())) != null) {
+				deao.oppdaterBetalingsstatus(d.getMobil(), true);
+			}
+		}
 		doGet(request, response);
 	}
 

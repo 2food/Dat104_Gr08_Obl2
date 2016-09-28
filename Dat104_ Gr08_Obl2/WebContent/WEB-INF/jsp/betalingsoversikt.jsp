@@ -14,29 +14,38 @@
 <c:set var="kvinne" scope="page" value="&#9792;" />
 <body>
 	<h2>Betalingsoversikt</h2>
-	<form>
+	<form action="Betalingsoversikt" method="post">
 		<table border="1">
 			<tr bgcolor="#cccccc">
 				<th align="left">Navn</th>
 				<th>Mobil</th>
 				<th>Betalingsstatus</th>
 			</tr>
-			
+
 
 			<c:forEach var="d" items="${dlist}">
 				<tr bgcolor="${d.betalingsstatus ? betalt : ubetalt}">
-					<td align="center">${d.fnavn} ${d.enavn}</td>
+					<td>${d.fnavn}${d.enavn}</td>
 					<td>${d.mobil}</td>
-					<td align="center">${d.betalingsstatus ? 'Betaling mottatt' :  '<input type="submit" name="${d.mobil}"
-					value="Registrer betaling" />' }</td>
+					<td><c:choose>
+							<c:when test="${d.betalingsstatus == true}">
+								Betaling mottatt
+							</c:when>
+							<c:otherwise>
+								<input type='submit' name='${d.mobil}'
+									value='Registrer betaling' />
+							</c:otherwise>
+						</c:choose></td>
+					<!--  <td align="center">${d.betalingsstatus ? 'Betaling mottatt' : ('<input type="submit" name="${d.mobil}"
+					value="Registrer betaling" />') }</td> -->
 				</tr>
 			</c:forEach>
-
+			<c:out value="sdfdf"></c:out>
 
 		</table>
 	</form>
 	<p>
-		<a href="kassererlogin.html">Ferdig</a>
+		<a href="Logut">Ferdig</a>
 	</p>
 </body>
 </html>
