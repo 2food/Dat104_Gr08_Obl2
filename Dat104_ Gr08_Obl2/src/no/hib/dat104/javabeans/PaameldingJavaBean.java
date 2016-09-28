@@ -2,6 +2,8 @@ package no.hib.dat104.javabeans;
 
 import java.io.Serializable;
 
+import no.hib.dat104.model.Validator;
+
 public class PaameldingJavaBean implements Serializable{
 
 	private static final long serialVersionUID = -2961280658254867857L;
@@ -29,7 +31,7 @@ public class PaameldingJavaBean implements Serializable{
 		if (etternavn == null || etternavn.trim() == "") {
 			valid = false;
 		}
-		if (mobil== null || mobil.trim() == "") {
+		if (!Validator.mobilValidate(mobil)) {
 			valid = false;
 		}
 		if (kjonn == null || kjonn.trim() == "") {
@@ -45,7 +47,7 @@ public class PaameldingJavaBean implements Serializable{
 	public void setFornavn(String fornavn) {
 		this.fornavn = fornavn;
 	}
-
+	
 	public String getEtternavn() {
 		return etternavn;
 	}

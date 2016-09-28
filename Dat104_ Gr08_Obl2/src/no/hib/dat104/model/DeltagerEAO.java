@@ -39,6 +39,12 @@ public class DeltagerEAO {
 		}
 		return eksiterer;
 	}
+	
+	public boolean mobilEksisterer(int nr) {
+		Deltager d = new Deltager(nr, "sjekk", "sjekk",
+				"sjekk");
+		return deltagerEksisterer(d);
+	}
 	/**
 	 * Legger til en deltager d
 	 * @param d
@@ -61,7 +67,7 @@ public class DeltagerEAO {
 		return list;
 	}
 	/**
-	 * Setter betalingsstatus status på deltagereren registrert med nummeret mobil
+	 * Setter betalingsstatus status pï¿½ deltagereren registrert med nummeret mobil
 	 * @param mobil
 	 * @param status
 	 */
