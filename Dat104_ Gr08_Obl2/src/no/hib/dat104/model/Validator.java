@@ -38,20 +38,17 @@ public class Validator {
 	 * @return boolean
 	 */
 	public static boolean loginValidate(String nr, List<Deltager> dlist) {
-		if (nr == null) {
+		if (nr == null || !mobilValidate(nr)) {
 			return false;
 		} else {
-			boolean valid = true;
+			
 			boolean finnes = false;
 			for (Deltager d : dlist) {
 				if (d.getMobil() == Integer.parseInt(nr)) {
 					finnes = true;
 				}
 			}
-			if (!mobilValidate(nr) || !finnes) {
-				valid = false;
-			}
-			return valid;
+			return finnes;
 		}
 	}
 }
