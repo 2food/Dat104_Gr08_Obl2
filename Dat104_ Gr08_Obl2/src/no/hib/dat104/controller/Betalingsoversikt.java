@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import no.hib.dat104.model.Deltager;
 import no.hib.dat104.model.DeltagerEAO;
-import no.hib.dat104.model.Validator;
 
 /**
  * Servlet implementation class Betalingsoversikt
@@ -35,7 +34,7 @@ public class Betalingsoversikt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesjon = request.getSession();
 		List<Deltager> dlist = deao.alleDeltagere();
-		if (true) {//sesjon.getAttribute("login") == initpassord) {
+		if (sesjon.getAttribute("riktigpassord") != null && (Boolean) sesjon.getAttribute("riktigpassord")) {
 			request.setAttribute("dlist", dlist);
 			request.getRequestDispatcher("WEB-INF/jsp/betalingsoversikt.jsp").forward(request, response);
 		} else {

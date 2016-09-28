@@ -15,7 +15,7 @@
 			<p>
 				Passord: <input type="password" name="passord" value="" />
 			</p>
-			${!riktigpassord ? "<p><font color='red'>Feil passord</font></p>" : " " }
+			${riktigpassord != null && !riktigpassord ? "<p><font color='red'>Feil passord</font></p>" : " " }
 			<p>
 				<input type="submit" value="Logg inn" />
 			</p>
