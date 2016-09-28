@@ -25,8 +25,8 @@
 
 			<c:forEach var="d" items="${dlist}">
 				<tr bgcolor="${d.betalingsstatus ? betalt : ubetalt}">
-					<td>${d.fnavn}${d.enavn}</td>
-					<td>${d.mobil}</td>
+					<td>${d.fullnavn}</td>
+					<td>${d.mobilFormattert}</td>
 					<td><c:choose>
 							<c:when test="${d.betalingsstatus == true}">
 								Betaling mottatt

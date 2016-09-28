@@ -42,6 +42,12 @@ public class Deltager implements Comparable<Deltager> {
 		return mobil;
 	}
 
+	public String getMobilFormattert() {
+		String format = String.valueOf(mobil);
+		format = format.substring(0,3) + " " + format.substring(3,5) + " " + format.substring(5);
+		return format;
+	}
+
 	public void setMobil(int mobil) {
 		this.mobil = mobil;
 	}
