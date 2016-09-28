@@ -51,4 +51,10 @@ public class Validator {
 			return finnes;
 		}
 	}
+	
+	public static boolean navnValidate(String navn) {
+		return (navn.length() <= 20 && navn.length() >= 2 && Character.isUpperCase(navn.charAt(0)));
+	}
+	
+	
 }
