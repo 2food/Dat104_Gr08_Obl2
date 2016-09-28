@@ -1,7 +1,6 @@
 package no.hib.dat104.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import no.hib.dat104.model.Deltager;
 import no.hib.dat104.model.DeltagerEAO;
 import no.hib.dat104.model.Validator;
 
@@ -45,11 +43,10 @@ public class Innlogging extends HttpServlet {
 		sesjon.setAttribute("validmobil", true);
 		sesjon.setAttribute("mobilfinnes", true);
 		
-		List<Deltager> dlist = deao.alleDeltagere();
 		if (!Validator.mobilValidate(mobil)) {
 			sesjon.setAttribute("validmobil", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
-		} else if (!Validator.finnesValidate(mobil, deao)) {
+		} else if (deao.deltagerEksisterer(Integer.parseInt(mobil))) {
 			sesjon.setAttribute("mobilfinnes", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
 		} else {

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import no.hib.dat104.model.Deltager;
 import no.hib.dat104.model.DeltagerEAO;
-import no.hib.dat104.model.Validator;
 
 @WebServlet("/Deltagerliste")
 public class Deltagerliste extends HttpServlet {

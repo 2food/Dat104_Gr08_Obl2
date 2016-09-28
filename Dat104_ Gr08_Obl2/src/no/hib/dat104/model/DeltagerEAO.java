@@ -40,7 +40,7 @@ public class DeltagerEAO {
 		return eksiterer;
 	}
 	
-	public boolean mobilEksisterer(int nr) {
+	public boolean deltagerEksisterer(int nr) {
 		Deltager d = new Deltager(nr, "sjekk", "sjekk",
 				"sjekk");
 		return deltagerEksisterer(d);

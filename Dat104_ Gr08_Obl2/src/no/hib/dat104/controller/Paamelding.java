@@ -3,15 +3,12 @@ package no.hib.dat104.controller;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.openjpa.persistence.EntityExistsException;
 
 import no.hib.dat104.javabeans.PaameldingJavaBean;
 import no.hib.dat104.model.Deltager;
@@ -49,7 +46,7 @@ public class Paamelding extends HttpServlet {
 		deltager.setMobil(request.getParameter("mobil"));
 		deltager.setKjonn(request.getParameter("kjonn"));
 
-		boolean valid = Validator.deltagerValidate(deltager, request, deao);
+		boolean valid = deltagerValidate(deltager, request, deao);
 
 		if (valid) {
 			Deltager d = new Deltager(Integer.parseInt(deltager.getMobil()), deltager.getFornavn(),
@@ -62,6 +59,31 @@ public class Paamelding extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
 		}
+	}
+	
+	public  boolean deltagerValidate(PaameldingJavaBean deltager, HttpServletRequest request, DeltagerEAO deao) {
+		boolean valid = true;
+		if (!Validator.navnValidate(deltager.getFornavn())) {
+			request.setAttribute("ugyldigfornavn", true);
+			valid = false;
+		}
+		if (!Validator.navnValidate(deltager.getEtternavn())) {
+			request.setAttribute("ugyldigetternavn", true);
+			valid = false;
+		}
+		if (!Validator.mobilValidate(deltager.getMobil())) {
+			request.setAttribute("ugyldigmobil", true);
+			valid = false;
+		}
+		if (deltager.getKjonn() == null) {
+			valid = false;
+		}
+		if (Validator.mobilValidate(deltager.getMobil()) && deao.deltagerEksisterer(Integer.parseInt(deltager.getMobil()))) {
+			request.setAttribute("finnes", true);
+			valid = false;
+
+		}
+		return valid;
 	}
 
 	
