@@ -2,6 +2,10 @@ package no.hib.dat104.model;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import no.hib.dat104.javabeans.PaameldingJavaBean;
+
 public class Validator {
 
 	/**
@@ -37,24 +41,43 @@ public class Validator {
 	 * 
 	 * @return boolean
 	 */
-	public static boolean loginValidate(String nr, List<Deltager> dlist) {
-		if (nr == null || !mobilValidate(nr)) {
+	public static boolean deltagerValidate(PaameldingJavaBean deltager, HttpServletRequest request, DeltagerEAO deao) {
+		boolean valid = true;
+		if (!navnValidate(deltager.getFornavn())) {
+			request.setAttribute("ugyldigfornavn", true);
+			valid = false;
+		}
+		if (!navnValidate(deltager.getEtternavn())) {
+			request.setAttribute("ugyldigetternavn", true);
+			valid = false;
+		}
+		if (!mobilValidate(deltager.getMobil())) {
+			request.setAttribute("ugyldigmobil", true);
+			valid = false;
+		}
+		if (deltager.getKjonn() == null) {
+			valid = false;
+		}
+		if (finnesValidate(deltager.getMobil(), deao)) {
+			request.setAttribute("finnes", true);
+			valid = false;
+
+		}
+		return valid;
+
+	}
+
+	public static boolean finnesValidate(String mobil, DeltagerEAO deao) {
+		try {
+			int nr = Integer.parseInt(mobil);
+			return deao.mobilEksisterer(nr);
+		} catch (NumberFormatException e) {
 			return false;
-		} else {
-			
-			boolean finnes = false;
-			for (Deltager d : dlist) {
-				if (d.getMobil() == Integer.parseInt(nr)) {
-					finnes = true;
-				}
-			}
-			return finnes;
 		}
 	}
-	
+
 	public static boolean navnValidate(String navn) {
 		return (navn.length() <= 20 && navn.length() >= 2 && Character.isUpperCase(navn.charAt(0)));
 	}
-	
-	
+
 }

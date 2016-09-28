@@ -26,7 +26,7 @@ public class Deltagerliste extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession sesjon = request.getSession();
 		List<Deltager> dlist = deao.alleDeltagere();
-		if (Validator.loginValidate((String) sesjon.getAttribute("login"), dlist)) {
+		if (sesjon.getAttribute("login") != null) {
 			request.setAttribute("dlist", dlist);
 			request.getRequestDispatcher("WEB-INF/jsp/deltagerliste.jsp").forward(request, response);
 		} else {

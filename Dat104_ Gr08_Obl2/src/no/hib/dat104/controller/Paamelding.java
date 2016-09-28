@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.openjpa.persistence.EntityExistsException;
+
 import no.hib.dat104.javabeans.PaameldingJavaBean;
 import no.hib.dat104.model.Deltager;
 import no.hib.dat104.model.DeltagerEAO;
 import no.hib.dat104.model.Validator;
-
 
 @WebServlet("/Paamelding")
 public class Paamelding extends HttpServlet {
@@ -23,7 +24,7 @@ public class Paamelding extends HttpServlet {
 
 	@EJB
 	private DeltagerEAO deao;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession sesjontemp = request.getSession(false);
@@ -32,7 +33,10 @@ public class Paamelding extends HttpServlet {
 		}
 		HttpSession sesjon = request.getSession();
 		sesjon.setAttribute("deltager", new PaameldingJavaBean());
+		request.setAttribute("ugyldigfornavn", false);
+		request.setAttribute("ugyldigetternavn", false);
 		request.setAttribute("finnes", false);
+		request.setAttribute("ugyldigmobil", false);
 		request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
 	}
 
@@ -44,21 +48,21 @@ public class Paamelding extends HttpServlet {
 		deltager.setEtternavn(request.getParameter("etternavn"));
 		deltager.setMobil(request.getParameter("mobil"));
 		deltager.setKjonn(request.getParameter("kjonn"));
-		if (deltager.valid()) {
-			if (Validator.mobilValidate(deltager.getMobil())) {
-				Deltager d = new Deltager(Integer.parseInt(deltager.getMobil()), deltager.getFornavn(), deltager.getEtternavn(), deltager.getKjonn());			
-				try {
+
+		boolean valid = Validator.deltagerValidate(deltager, request, deao);
+
+		if (valid) {
+			Deltager d = new Deltager(Integer.parseInt(deltager.getMobil()), deltager.getFornavn(),
+					deltager.getEtternavn(), deltager.getKjonn());
+			
 				deao.leggTilDeltager(d);
-				} catch (EJBTransactionRolledbackException e) {
-					request.setAttribute("finnes", true);
-					request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
-				}
-			}
-			sesjon.setAttribute("login", deltager.getMobil());
-			response.sendRedirect("Bekreftelse");
+				sesjon.setAttribute("login", deltager.getMobil());
+				response.sendRedirect("Bekreftelse");
+		
 		} else {
-		request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/paameldingsskjema.jsp").forward(request, response);
 		}
 	}
 
+	
 }
