@@ -10,8 +10,6 @@
 </head>
 <c:set var="betalt" scope="page" value="#aaffaa" />
 <c:set var="ubetalt" scope="page" value="#ffaaaa" />
-<c:set var="mann" scope="page" value="&#9794;" />
-<c:set var="kvinne" scope="page" value="&#9792;" />
 <body>
 	<h2>Betalingsoversikt</h2>
 	<form action="Betalingsoversikt" method="post">
