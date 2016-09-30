@@ -46,7 +46,7 @@ public class Innlogging extends HttpServlet {
 		if (!Validator.mobilValidate(mobil)) {
 			sesjon.setAttribute("validmobil", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
-		} else if (deao.deltagerEksisterer(Integer.parseInt(mobil))) {
+		} else if (!deao.deltagerEksisterer(Integer.parseInt(mobil))) {
 			sesjon.setAttribute("mobilfinnes", false);
 			request.getRequestDispatcher("WEB-INF/jsp/mobillogin.jsp").forward(request, response);
 		} else {
